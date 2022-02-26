@@ -1,0 +1,79 @@
+<h3>全ユーザー情報一覧画面</h3>
+
+<% puts "yo!" %>
+<% hello = "こんにちは"%>
+<p><%= hello %></p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザーid</th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>年齢</th>
+      <th>一言紹介</th>
+      <th>更新日</th>
+      <th>作成日</th>
+      <th>詳細参照</th>
+      <th>ユーザー情報の編集</th>
+      <th>ユーザー情報の削除</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.age %></td>
+        <td><%= user.introduction %></td>
+        <td><%= user.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= user.created_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to "参照", user_path(user) %></td>
+        <!--<td><%= link_to "参照", user %></td>-->
+        <td><%= link_to "編集", edit_user_path(user)%></td>
+        <td><%= button_to "削除", user, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "ユーザー新規登録",:new_user %></p>
+<!--<p><%= link_to "参照",user_path(1)%></p>-->
+
+
+<h3>全ユーザー投稿一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>投稿内容</th>
+      <th>更新日時</th>
+      <th>作成日時</th>
+      <th>投稿者(Use_id)</th>
+      <th>投稿の詳細</th>
+      <th>投稿の編集</th>
+      <th>投稿の削除</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.content %></td>
+        <td><%= post.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= post.created_at.to_s(:datetime_jp) %></td>
+        <td><%= post.user_id %></td>
+        <td><%= link_to "参照", post %></td>
+        <td><%= link_to "編集", [:edit,post] %></td>
+        <td><%= button_to "削除", post, method: :delete %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+

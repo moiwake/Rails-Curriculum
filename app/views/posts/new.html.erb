@@ -1,0 +1,26 @@
+<h3>新規投稿</h3>
+
+<%= form_with model:@post do |f| %>
+
+  <table>
+    <tr>
+      <th><%= f.label :content,"投稿内容" %></th>
+      <td><%= f.text_area :content, class:"posts_content" %></td>
+    </tr>
+  </table>
+  
+  <%= f.hidden_field :user_id, value: @post.user.id %>
+  
+  <div>
+    <ul>
+      <li><%= f.submit "投稿を完了する" %></li>
+    </ul>
+  </div>
+<% end %>
+
+
+<div>
+  <ul>
+    <li><%= link_to "全ユーザー情報一覧画面に戻る", :users %></li>
+  </ul>
+</div>

@@ -1,0 +1,12 @@
+<% if obj.errors.any? %>
+  <% obj.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+      <li>エラーあり</li>
+    </ul>
+  <% end %>
+<% end %>
+
+
+<% partial = "_errorのパーシャル"%>
+<p><%= partial %></p>
